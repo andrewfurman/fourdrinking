@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>Carnival 2012 Countdown</title>
+	<STYLE type="text/css">
+		H1.myclass {border-width: 1; border: solid; text-align: center}
+		body{background-color:black;}
+		span {color:red;
+		}
+		#cntdwn {
+			font-size:600%
+		}
+	</STYLE>
+  </head>
+  <body>
+    <center>
+	<h2>Countdown Until Carnival 2012</h2>
+	<h3><center> Friday, April 20, 12:00am</center></h3>
+        <script language="JavaScript">
+            TargetDate = "04/20/2012 12:00 AM";
+            CountActive = true;
+            CountStepper = -1;
+            LeadingZero = true;
+            DisplayFormat = "%%D%%:%%H%%:%%M%%:%%S%%";
+
+            function calcage(secs, num1, num2) {
+              s = ((Math.floor(secs/num1))%num2).toString();
+              if (LeadingZero && s.length < 2)
+                s = "0" + s;
+              return "<b>" + s + "</b>";
+            }
+
+            function CountBack(secs) {
+              if (secs < 0) {
+                return;
+              }
+              DisplayStr = DisplayFormat.replace(/%%D%%/g, calcage(secs, 86400, 86400));
+              DisplayStr = DisplayStr.replace(/%%H%%/g, calcage(secs,3600,24));
+              DisplayStr = DisplayStr.replace(/%%M%%/g, calcage(secs,60,60));
+              DisplayStr = DisplayStr.replace(/%%S%%/g, calcage(secs,1,60)); 
+              document.getElementById("cntdwn").innerHTML = DisplayStr;
+              if (CountActive)
+                 setTimeout("CountBack(" + (secs+CountStepper) + ")", SetTimeOutPeriod);
+            }
+            function putspan() {
+              document.write("<span id='cntdwn'></span>"); //style='font-size: 40px';
+              document.write("<span><br/>days &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp hours &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp mins &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp secs</span>");
+            }
+            var SetTimeOutPeriod = (Math.abs(CountStepper)-1)*1000 + 990;
+            putspan();
+            var dthen = new Date(TargetDate);
+            var dnow = new Date();
+            if(CountStepper>0)
+              ddiff = new Date(dnow-dthen);
+            else
+              ddiff = new Date(dthen-dnow);
+            gsecs = Math.floor(ddiff.valueOf()/1000);
+            CountBack(gsecs);
+        </script>
+  </body>
+</html>
