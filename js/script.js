@@ -1,21 +1,21 @@
-var token, map = {}, checkins = []; 
+var token, map = {}, checkins = [];
 // var drinkingVenues = new Array("4bf58dd8d48988d116941735", "1");
 var drinkingVenues = new Array("4bf58dd8d48988d17c941735", "4bf58dd8d48988d18e94173",
-"4bf58dd8d48988d1e5931735", 
-"4bf58dd8d48988d1e7931735", 
-"4bf58dd8d48988d1e8931735", 
-"4bf58dd8d48988d1e9931735", 
-"4bf58dd8d48988d1e3931735", 
+"4bf58dd8d48988d1e5931735",
+"4bf58dd8d48988d1e7931735",
+"4bf58dd8d48988d1e8931735",
+"4bf58dd8d48988d1e9931735",
+"4bf58dd8d48988d1e3931735",
 "4bf58dd8d48988d184941735",
 "4bf58dd8d48988d183941735",
 "4bf58dd8d48988d1b0941735",
-"4bf58dd8d48988d1cf941735", 
-"4bf58dd8d48988d1c4941735", 
+"4bf58dd8d48988d1cf941735",
+"4bf58dd8d48988d1c4941735",
 "4bf58dd8d48988d14b941735",
 "4bf58dd8d48988d116941735",
 "4bf58dd8d48988d117941735",
 "4bf58dd8d48988d11e941735",
-"4bf58dd8d48988d118941735", 
+"4bf58dd8d48988d118941735",
 "4bf58dd8d48988d1d8941735",
 "4bf58dd8d48988d119941735",
 "4bf58dd8d48988d1d5941735",
@@ -27,7 +27,7 @@ var drinkingVenues = new Array("4bf58dd8d48988d17c941735", "4bf58dd8d48988d18e94
 "4bf58dd8d48988d11d941735",
 "4bf58dd8d48988d122941735",
 "4bf58dd8d48988d123941735");
-var requestUrl = "https://api.foursquare.com/v2/checkins/recent?limit=100&callback=parseResponse";
+var requestUrl = "https://api.foursquare.com/v2/checkins/recent?limit=100&callback=parseResponse&v=20140921";
 var userDataUrl = "https://api.foursquare.com/v2/users/self?callback=parseUserResponse"
 //window.onresize = function() {resize()};
 window.onload=function(){
@@ -67,7 +67,7 @@ function parseResponse(data){
 			checkinObject.icon = checkinsData[i].venue.categories[0].icon;
 			if(drinkingVenues.indexOf(checkinsData[i].venue.categories[0].id)>=0){
 				checkins.push(checkinObject);
-			}	
+			}
 	 	}catch(err){}
 	}
 	var listOfCheckins = "";
@@ -97,7 +97,7 @@ function initialize() {
   	for (var i = 0; i < checkins.length; i++) {
   	    	var location = new google.maps.LatLng(checkins[i].latitude,checkins[i].longitude);
   	    	var marker = new google.maps.Marker({
-  	        	position: location, 
+  	        	position: location,
   	        	map: map,
   	    	});
   			markers[i] = marker;
