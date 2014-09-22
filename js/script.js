@@ -64,7 +64,8 @@ function parseResponse(data){
 			checkinObject.venueCity = checkinsData[i].venue.location.city+', '+checkinsData[i].venue.location.state+' '+checkinsData[i].venue.location.postalCode;
 			checkinObject.latitude = checkinsData[i].venue.location.lat;
 			checkinObject.longitude = checkinsData[i].venue.location.lng;
-			checkinObject.icon = checkinsData[i].venue.categories[0].icon.prefix;
+			checkinObject.icon = checkinsData[i].venue.categories[0].icon.prefix +'bg_32'+ checkinsData[i].venue.categories[0].icon.suffix;
+			alert(checkinObject.icon);
 			if(drinkingVenues.indexOf(checkinsData[i].venue.categories[0].id)>=0){
 				checkins.push(checkinObject);
 			}
